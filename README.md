@@ -1,6 +1,9 @@
 # Task Board
 Quadro para controle de tarefas 
 
+# Protótipo
+https://www.figma.com/file/mRHyURcAZG4kU95Kunh8nA/Untitled?node-id=0%3A1
+
 # Checklist
 - [x] Criar o repositório no GitHub com a estrutura do Gitflow, ou seja, branches main e develop.
 - [ ] Usar componentes de algum framework CSS (Bootstrap, Materialize ou outro).
