@@ -2,7 +2,7 @@
 Quadro para controle de tarefas 
 
 # Protótipo
-https://www.figma.com/file/mRHyURcAZG4kU95Kunh8nA/Untitled?node-id=0%3A1
+https://www.figma.com/file/mRHyURcAZG4kU95Kunh8nA/task-board
 
 # Checklist
 - [x] Criar o repositório no GitHub com a estrutura do Gitflow, ou seja, branches main e develop.
