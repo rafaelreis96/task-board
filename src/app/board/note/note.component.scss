@@ -1,0 +1,27 @@
+.note {
+  width: 250px;
+  height: 250px;
+  background-image: url(/assets/images/postnote-yellow.svg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  transform: rotate(-1.4deg);
+  padding: 16px;
+  box-sizing: border-box;
+  position: relative;
+
+  &-header {
+    padding-top: 16px;
+  }
+
+  &-title {
+    text-align: center;
+  }
+
+  &-footer {
+    padding: 8px;
+    position: absolute;
+    bottom: 20px;
+    right: 8px;
+  }
+
+}
