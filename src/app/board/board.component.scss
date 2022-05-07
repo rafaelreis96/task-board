@@ -1,0 +1,10 @@
+.board {
+  display: flex;
+
+  &-column {
+    border-right: solid 2px #555;
+    &:last-child {
+      border: none;
+    }
+  }
+}
