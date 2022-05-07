@@ -1,0 +1,17 @@
+.column{
+  width: 282px;
+  height: 100%;
+
+  &-title {
+    text-align: center;
+    border-bottom: solid 2px #555;
+    padding: 8px;
+  }
+
+  &-notes {
+    margin: 0;
+    padding: 0 16px;
+    list-style: none;
+  }
+
+}
