@@ -24,11 +24,32 @@ $my-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
+/**********************
+ * Partes do Bootstrap *
+***********************/
+
+// Import functions, variables, and mixins needed by other Bootstrap files
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// Import Reboot
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+
+// Imnport Containers And Grid System
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+
+// Import Utilitites
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/utilities/api";
+
+
 html, body { height: 100%; }
 body {
   margin: 0;
   padding-top: 64px;
-
   /*font-family: Roboto, "Helvetica Neue", sans-serif; */
 }
 body, h1, h2, h3, h4, h5, h6 {
