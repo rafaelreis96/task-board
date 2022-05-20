@@ -10,4 +10,10 @@
       border: none;
     }
   }
+
+  &-footer {
+    position: fixed;
+    right: 1em;
+    bottom: 3em;
+  }
 }
