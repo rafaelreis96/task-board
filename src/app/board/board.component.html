@@ -1,11 +1,27 @@
-<div class="board">
-  <div class="board-column">
-    <app-column></app-column>
+<div class="container-board">
+  <div class="board-content">
+    <div class="board-column">
+      <app-column></app-column>
+    </div>
+    <div class="board-column">
+      <app-column></app-column>
+    </div>
+    <div class="board-column">
+      <app-column></app-column>
+    </div>
   </div>
-  <div class="board-column">
-    <app-column></app-column>
-  </div>
-  <div class="board-column">
-    <app-column></app-column>
+
+  <div class="board-footer d-flex justify-content-end">
+    <app-button-novo [matMenuTriggerFor]="menu">Novo</app-button-novo>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>note</mat-icon>
+        <span>Nota adesiva</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>view_column</mat-icon>
+        <span>Coluna de notas</span>
+      </button>
+    </mat-menu>
   </div>
 </div>
