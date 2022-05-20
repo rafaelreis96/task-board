@@ -5,6 +5,7 @@ import { BoardRoutingModule } from './board-routing.module';
 import { BoardComponent } from './board.component';
 import { ColumnComponent } from './column/column.component';
 import { NoteComponent } from './note/note.component';
+import { SharedModule } from '@app/shared/shared.module';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { NoteComponent } from './note/note.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     BoardRoutingModule
   ]
 })

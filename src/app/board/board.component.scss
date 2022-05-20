@@ -1,5 +1,8 @@
 .board {
-  display: flex;
+
+  &-content {
+    display: flex;
+  }
 
   &-column {
     border-right: solid 2px #555;
