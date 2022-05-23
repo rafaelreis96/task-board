@@ -1,11 +1,11 @@
 <div class="note">
   <div class="note-header">
-    <h1 class="note-title">Titulo Nota</h1>
+    <h1 class="note-title">{{ note.titulo }}</h1>
   </div>
   <div class="note-content">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos asperiores, nemo quos fugiat exercitationem.
+    {{ note.descricao }}
   </div>
   <div class="note-footer">
-    <span style="text-align: right;">15/05/2022</span>
+    <span class="text-right text-small">{{ (note.datas?.inicio | date:'dd/MM/yyyy') + ' - '+(note.datas?.termino | date:'dd/MM/yyyy')  }}</span>
   </div>
 </div>

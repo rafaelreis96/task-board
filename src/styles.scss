@@ -45,6 +45,7 @@ $my-theme: mat.define-light-theme((
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/utilities/api";
 
+@import "assets/scss/custom.scss";
 
 html, body { height: 100%; }
 body {

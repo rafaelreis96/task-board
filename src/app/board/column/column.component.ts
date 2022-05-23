@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Column } from './column.model';
+import { Note } from './../note/note.model';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-column',
@@ -6,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./column.component.scss']
 })
 export class ColumnComponent implements OnInit {
-  titulo: string = "Nome Coluna";
+  @Input()
+  column!: Column;
 
   constructor() { }
 

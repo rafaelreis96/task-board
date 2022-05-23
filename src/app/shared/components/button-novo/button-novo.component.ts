@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-button-novo',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./button-novo.component.scss']
 })
 export class ButtonNovoComponent implements OnInit {
+  @Input()
+  disabled = false;
 
   constructor() { }
 
