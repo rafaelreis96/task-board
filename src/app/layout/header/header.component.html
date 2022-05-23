@@ -1,15 +1,31 @@
 <header>
   <mat-toolbar color="primary">
-    <h1>{{ title }}</h1>
+
+    <h1>
+      <a style="text-decoration: none; color: inherit;" routerLink="/" [title]="title">
+        {{ title }}
+      </a>
+    </h1>
+
     <span class="spacer"></span>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>notifications</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Pesquisar">
       <mat-icon>search</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button mat-icon-button class="example-icon favorite-icon" [matMenuTriggerFor]="settingsMenu" aria-label="Configurações">
       <mat-icon>settings</mat-icon>
+    </button>
+    <mat-menu #settingsMenu="matMenu">
+      <a mat-menu-item [routerLink]="['/sobre']">
+        <mat-icon>info</mat-icon>
+        <span>Sobre</span>
+      </a>
+      <a mat-menu-item [routerLink]="['/tutorial', {secao: 'inicio'}]">
+        <mat-icon>book</mat-icon>
+        <span>Tutorias</span>
+      </a>
+    </mat-menu>
+    <button mat-icon-button class="example-icon" aria-label="Notificações">
+      <mat-icon>notifications</mat-icon>
     </button>
   </mat-toolbar>
 </header>

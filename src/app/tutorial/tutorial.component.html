@@ -1,0 +1,57 @@
+<div class="container py-4">
+
+  <div class="row">
+    <div class="col-sm-3 border-end">
+      <mat-selection-list #shoes [multiple]="false">
+        <mat-list-option *ngFor="let s of secoes" [routerLink]="s.route">
+          {{s.titulo}}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+
+    <div class="offset-1 col-sm-8">
+      <container-element [ngSwitch]="secao">
+        <ng-container *ngSwitchCase="'inicio'">
+          <h1>Bem-vindo!</h1>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'nota'">
+          <h1>Como criar uma Nota?</h1>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'coluna'">
+          <h1>Como criar uma Coluna de notas?</h1>
+        </ng-container>
+      </container-element>
+
+      <!-- Texto de Exemplo -->
+      <h2>Et tempore nostrum sed corrupti tempora quo numquam alias.</h2>
+      <p>
+        Lorem ipsum dolor sit amet. Ut molestiae dicta ut doloribus quibusdam qui omnis accusantium
+        aut minus quibusdam est omnis adipisci eum repellat eligendi. Ut ipsam tenetur  unde quisa eaque.
+        <img style="margin: 1em auto; display: block;" src="http://placehold.jp/720x480.png" />
+        Eveniet porro aut minus aliquam quo voluptatibus similique eos voluptate cumque ut ullam aspernatur
+        aut quam placeat in error doloribus?
+      </p>
+
+      <h3>Quo libero error eos delectus aspernatur est eaque adipisci. </h3>
+      <p>
+        Eum repellendus voluptas et enim dolor 33 blanditiis temporibus qui officia recusandae non illum rerum.
+        <img style="margin: 1em auto; display: block;" src="http://placehold.jp/720x480.png" />
+        Eum libero sequiut aspernatur nam vitae magni. Sit eius unde sit blanditiis illum nam dolor porro
+        Quis sunt eum iusto galisum. Ut repellat tenetur cum dolore iure et aspernatur earum vel voluptatem
+        officia qui sunt quod.
+      </p>
+
+      <h3>Quo rerum exercitationem aut temporibus temporibus. </h3>
+      <p>
+        Aut galisum deleniti a voluptas modiet cupiditate est illum dolore.
+        <img style="margin: 1em auto; display: block;" src="http://placehold.jp/720x480.png" />
+        Ut quod illo et sequi tenetur et pariatur
+        nihil id quia sapiente qui labore cupiditate. A laudantium repellat et earum blanditiis et itaque nisi eos velit similique.
+      </p>
+
+    </div>
+  </div>
+
+</div>
