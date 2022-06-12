@@ -15,7 +15,7 @@
         <div class="col-6">
           <mat-form-field>
             <mat-label>Data Início/Término</mat-label>
-            <mat-date-range-input formGroupName="datas" [rangePicker]="picker">
+            <mat-date-range-input formGroupName="periodo" [rangePicker]="picker">
               <input matStartDate formControlName="inicio" placeholder="Date início">
               <input matEndDate formControlName="termino" placeholder="Data término">
             </mat-date-range-input>
@@ -23,8 +23,8 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
 
-            <mat-error *ngIf="formGroup.controls['datas'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
-            <mat-error *ngIf="formGroup.controls['datas'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            <mat-error *ngIf="formGroup.controls['periodo'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="formGroup.controls['periodo'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
           </mat-form-field>
         </div>
 
