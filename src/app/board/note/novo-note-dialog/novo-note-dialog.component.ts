@@ -1,3 +1,4 @@
+import { NoteService } from './../note.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -15,57 +16,49 @@ export interface DialogData {
 export class NovoNoteDialogComponent implements OnInit {
   titulo = "Nova Nota";
   formGroup!: FormGroup;
-  columns!: Column[];
+  columns: Column[] = [];
 
   horaInicio!: FormControl;
   horaTermino!: FormControl;
   regexHoraMinuto = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
   constructor(
+    private noteService: NoteService,
     private dialogRef: MatDialogRef<NovoNoteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) private data: DialogData ) { }
 
   ngOnInit(): void {
     this.columns = this.data.columns;
-
-    this.horaInicio = new FormControl("00:00");
-    this.horaTermino = new FormControl("00:00");
+    this.horaInicio = new FormControl("00:00", [Validators.pattern(this.regexHoraMinuto)]);
+    this.horaTermino = new FormControl("00:00", [Validators.pattern(this.regexHoraMinuto)]);
     this.formGroup = new FormGroup({
       titulo: new FormControl("", [Validators.required]),
       descricao: new FormControl("", [Validators.required]),
       coluna: new FormControl("", [Validators.required]),
-      datas: new FormGroup({
-        inicio: new FormControl(null, [Validators.required]),
-        termino: new FormControl(null, [Validators.required])
+      periodo: new FormGroup({
+        inicio: new FormControl(new Date(), [Validators.required]),
+        termino: new FormControl(new Date(), [Validators.required],)
       }),
     });
 
+    this.horaInicio.statusChanges.subscribe( () => this.setHorasPeriodo(this.horaInicio, 'inicio'));
+    this.horaTermino.statusChanges.subscribe( () => this.setHorasPeriodo(this.horaTermino, 'termino'));
+  }
 
+  private setHorasPeriodo(control: FormControl, periodo: string) : void {
+    if(this.regexHoraMinuto.test(control.value)
+        && this.formGroup.get('periodo')?.get(periodo)?.valid) {
+      const horas = control.value.split(":");
+      this.formGroup.get('periodo')?.get(periodo)?.value.setHours(horas[0], horas[1], 0, 0);
+    }
   }
 
   salvar() : void {
     if(this.formGroup.valid) {
-      this.ajustarDatasComHorarios();
+      this.noteService.create(this.formGroup.value);
       this.dialogRef.close(this.formGroup.value);
     } else {
       this.dialogRef.close(null);
-    }
-  }
-
-  private ajustarDatasComHorarios() : void {
-    const dataInicio: Date = this.formGroup.get('datas')?.get('inicio')?.value;
-    const dataTermino: Date = this.formGroup.get('datas')?.get('termino')?.value;
-
-    if(this.regexHoraMinuto.test(this.horaInicio.value)) {
-      const horas = this.horaInicio.value.split(":");
-      dataInicio.setHours(horas[0], horas[1], 0, 0);
-      this.formGroup.get('datas')?.get('inicio')?.setValue(dataInicio);
-    }
-
-    if(this.regexHoraMinuto.test(this.horaTermino.value)) {
-      const horas = this.horaTermino.value.split(":");
-      dataTermino.setHours(horas[0], horas[1], 0, 0);
-      this.formGroup.get('datas')?.get('termino')?.setValue(dataTermino);
     }
   }
 
