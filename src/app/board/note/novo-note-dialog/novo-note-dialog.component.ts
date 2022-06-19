@@ -1,8 +1,8 @@
-import { NoteService } from './../note.service';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Column } from './../../column/column.model';
+import { NoteService } from './../note.service';
 
 export interface DialogData {
   columns: Column[]
@@ -34,7 +34,7 @@ export class NovoNoteDialogComponent implements OnInit {
     this.formGroup = new FormGroup({
       titulo: new FormControl("", [Validators.required]),
       descricao: new FormControl("", [Validators.required]),
-      coluna: new FormControl("", [Validators.required]),
+      colunaId: new FormControl("", [Validators.required]),
       periodo: new FormGroup({
         inicio: new FormControl(new Date(), [Validators.required]),
         termino: new FormControl(new Date(), [Validators.required],)
@@ -55,8 +55,12 @@ export class NovoNoteDialogComponent implements OnInit {
 
   salvar() : void {
     if(this.formGroup.valid) {
-      this.noteService.create(this.formGroup.value);
-      this.dialogRef.close(this.formGroup.value);
+      this.noteService.create(this.formGroup.value)
+      .then( (note) => {
+        this.dialogRef.close(note);
+      }).catch( e => {
+        alert("Erro: " + e.statusText)
+      });
     } else {
       this.dialogRef.close(null);
     }

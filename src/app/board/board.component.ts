@@ -26,18 +26,13 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.columns = this.columnService.findAll();
-    this.columns.forEach( c => {
-      c.notes = [];
-      this.noteService.findAll().forEach(note => {
-        if(note) {
-          const i = this.columns.findIndex(c => c.id == note.coluna?.id);
-          if(i !== -1) {
-            this.columns[i].notes?.push(note);
-            console.log(this.columns)
-          }
-        }
-      });
+    this.columnService.findAll()
+    .then((columns) => {
+      if(columns) {
+        this.columns = columns;
+      }
+    }).catch( e => {
+      alert("Erro: " + e.statusText)
     });
 
   }
@@ -48,7 +43,7 @@ export class BoardComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe( (column: Column) => {
       if(column) {
-       // this.columns.push(column);
+        this.columns.push(column);
 
         if(this.columns.length == 1) {
           this.novoNoteDialog();
@@ -73,11 +68,10 @@ export class BoardComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe( (note: Note) => {
-      console.log(note)
       if(note) {
-        const i = this.columns.findIndex(c => c.id == note.coluna?.id);
+        const i = this.columns.findIndex(c => c.id == note.colunaId);
         if(i !== -1) {
-          this.columns[i].notes?.push(note);
+          this.columns[i].notas?.push(note);
         }
       }
     })
