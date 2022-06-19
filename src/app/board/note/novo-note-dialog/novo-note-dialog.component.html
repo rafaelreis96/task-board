@@ -49,8 +49,8 @@
 
       <mat-form-field>
         <mat-label>Coluna</mat-label>
-        <mat-select formControlName="coluna">
-          <mat-option *ngFor="let c of columns" [value]="c">
+        <mat-select formControlName="colunaId">
+          <mat-option *ngFor="let c of columns" [value]="c.id">
             {{c.titulo}}
           </mat-option>
         </mat-select>
