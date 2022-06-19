@@ -4,8 +4,8 @@
   </div>
 
 
-  <ul *ngIf="column.notes" class="column-notes">
-    <li class="item-note" *ngFor="let n of column.notes">
+  <ul *ngIf="column.notas?.length" class="column-notes">
+    <li class="item-note" *ngFor="let n of column.notas">
       <app-note [note]="n"></app-note>
     </li>
   </ul>

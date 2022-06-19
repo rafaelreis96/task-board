@@ -6,7 +6,7 @@ export interface Note {
   titulo: string;
   descricao: string;
   periodo: Periodo;
-  coluna?: Column;
+  colunaId: number;
   data_modificacao: Date;
   data_criacao: Date;
 }

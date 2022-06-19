@@ -9,6 +9,9 @@ import { SharedModule } from '@app/shared/shared.module';
 import { NovoColumnDialogComponent } from './column/novo-column-dialog/novo-column-dialog.component';
 import { NovoNoteDialogComponent } from './note/novo-note-dialog/novo-note-dialog.component';
 
+import { ColumnService } from './column/column.service';
+import { NoteService } from './note/note.service';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +25,10 @@ import { NovoNoteDialogComponent } from './note/novo-note-dialog/novo-note-dialo
     CommonModule,
     SharedModule,
     BoardRoutingModule
+  ],
+  providers: [
+    ColumnService,
+    NoteService
   ]
 })
 export class BoardModule { }

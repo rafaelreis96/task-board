@@ -1,19 +1,21 @@
-import { Column } from './column.model';
 import { Injectable } from '@angular/core';
-import { AbstractDao } from '@app/core/services/abstract.dao';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ColumnService extends AbstractDao<Column>{
+import { environment } from '@env/environment';
+import { Column } from './column.model';
 
-  constructor() {
-    super('COLUMN');
+@Injectable()
+export class ColumnService {
+  private readonly URL = environment.apiUrl + '/colunas';
+
+  constructor(private http: HttpClient) { }
+
+  create(column: Column) : Promise<Column | undefined> {
+    return this.http.post<Column>(this.URL, column).toPromise();
   }
 
-  override create(t: Column) : void {
-    t.id = Math.floor(Math.random() * 1000000);
-    super.create(t);
+  findAll() : Promise<Column[] | undefined> {
+    return this.http.get<Column[]>(`${this.URL}/?_embed=notas`).toPromise();
   }
 
 }
