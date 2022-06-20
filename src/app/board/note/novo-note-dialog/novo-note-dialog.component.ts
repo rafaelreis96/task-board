@@ -1,12 +1,10 @@
+import { Note } from './../note.model';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Column } from './../../column/column.model';
 import { NoteService } from './../note.service';
-
-export interface DialogData {
-  columns: Column[]
-}
+import { ColumnService } from '@app/board/column/column.service';
 
 @Component({
   selector: 'app-novo-note-dialog',
@@ -23,12 +21,16 @@ export class NovoNoteDialogComponent implements OnInit {
   regexHoraMinuto = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
   constructor(
+    private columnService: ColumnService,
     private noteService: NoteService,
     private dialogRef: MatDialogRef<NovoNoteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: DialogData ) { }
+    @Inject(MAT_DIALOG_DATA) private note: Note ) { }
 
   ngOnInit(): void {
-    this.columns = this.data.columns;
+    this.columnService.findAll().subscribe({
+      next: (columns: Column[]) => this.columns = columns
+    });
+
     this.horaInicio = new FormControl("00:00", [Validators.pattern(this.regexHoraMinuto)]);
     this.horaTermino = new FormControl("00:00", [Validators.pattern(this.regexHoraMinuto)]);
     this.formGroup = new FormGroup({
@@ -43,27 +45,72 @@ export class NovoNoteDialogComponent implements OnInit {
 
     this.horaInicio.statusChanges.subscribe( () => this.setHorasPeriodo(this.horaInicio, 'inicio'));
     this.horaTermino.statusChanges.subscribe( () => this.setHorasPeriodo(this.horaTermino, 'termino'));
+
+    if(this.note) {
+      this.titulo = "Editar Nota";
+      this.setValuesForm(this.note);
+    }
+
+  }
+
+  private setValuesForm(note: Note) {
+    this.formGroup.patchValue({
+      titulo: note.titulo,
+      descricao: note.descricao,
+      colunaId: note.colunaId
+    });
+
+    const resolveTime = (valor: string) => valor.length == 1 ? '0'+valor : valor;
+
+    if(note.periodo['inicio']) {
+      const horaInicio = new Date(note.periodo.inicio);
+      this.horaInicio.setValue(
+        resolveTime(horaInicio.getHours().toString())
+        + ":" + resolveTime(horaInicio.getMinutes().toString()));
+    }
+
+    if(note.periodo['termino']) {
+      const horaTermino = new Date(note.periodo.termino);
+      this.horaTermino.setValue(
+        resolveTime(horaTermino.getHours().toString())
+        + ":" + resolveTime(horaTermino.getMinutes().toString()));
+    }
   }
 
   private setHorasPeriodo(control: FormControl, periodo: string) : void {
     if(this.regexHoraMinuto.test(control.value)
         && this.formGroup.get('periodo')?.get(periodo)?.valid) {
       const horas = control.value.split(":");
-      this.formGroup.get('periodo')?.get(periodo)?.value.setHours(horas[0], horas[1], 0, 0);
+      this.formGroup.get('periodo')?.get(periodo)?.value
+                    .setHours(horas[0], horas[1], 0, 0);
     }
   }
 
   salvar() : void {
     if(this.formGroup.valid) {
-      this.noteService.create(this.formGroup.value)
-      .then( (note) => {
-        this.dialogRef.close(note);
-      }).catch( e => {
-        alert("Erro: " + e.statusText)
-      });
+      this.formGroup.disable();
+
+      if(this.hasEdit()) {
+        console.log(this.note)
+        this.noteService.update(this.note.id, this.formGroup.value)
+        .subscribe({
+          next: (note: Note) => this.dialogRef.close(note),
+          complete: () => this.formGroup.enable()
+        });
+      } else {
+        this.noteService.create(this.formGroup.value)
+        .subscribe({
+          next: (note: Note) => this.dialogRef.close(note),
+          complete: () => this.formGroup.enable()
+        });
+      }
     } else {
       this.dialogRef.close(null);
     }
+  }
+
+  hasEdit() {
+    return this.note != null && this.note != undefined;
   }
 
 }
