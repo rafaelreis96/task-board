@@ -11,6 +11,7 @@ import { NovoNoteDialogComponent } from './note/novo-note-dialog/novo-note-dialo
 
 import { ColumnService } from './column/column.service';
 import { NoteService } from './note/note.service';
+import { InfoNoteDialogComponent } from './note/info-note-dialog/info-note-dialog.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NoteService } from './note/note.service';
     ColumnComponent,
     NoteComponent,
     NovoColumnDialogComponent,
-    NovoNoteDialogComponent
+    NovoNoteDialogComponent,
+    InfoNoteDialogComponent
   ],
   imports: [
     CommonModule,
