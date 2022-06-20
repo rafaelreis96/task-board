@@ -8,9 +8,16 @@
   padding: 16px;
   box-sizing: border-box;
   position: relative;
+  cursor: pointer;
+  transition: 500ms;
+
+  &:hover{
+    transform: rotate(-2.5deg);
+  }
 
   &-header {
-    padding-top: 16px;
+    padding-top: 24px;
+    position: relative;
   }
 
   &-title {

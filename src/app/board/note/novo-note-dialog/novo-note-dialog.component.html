@@ -57,7 +57,7 @@
       </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <app-button-salvar [disabled]="formGroup.invalid">Criar</app-button-salvar>
+    <app-button-salvar [disabled]="formGroup.invalid"> {{ hasEdit() ? 'Atualizar' : 'Criar'}}</app-button-salvar>
     <app-button-descartar mat-dialog-close>Descartar</app-button-descartar>
   </mat-dialog-actions>
 </form>

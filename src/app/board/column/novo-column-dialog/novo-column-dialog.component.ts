@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+
+import { Column } from './../column.model';
 import { ColumnService } from '../column.service';
 
 @Component({
@@ -25,12 +27,11 @@ export class NovoColumnDialogComponent implements OnInit {
   salvar() : void {
     if(this.formGroup.valid) {
       this.columnService.create(this.formGroup.value)
-      .then((column) => {
-        this.dialogRef.close(column);
+      .subscribe({
+        next:(column: Column) => {
+          this.dialogRef.close(column);
+        }
       })
-      .catch( e => {
-        alert("Erro: " + e.statusText)
-      });
     } else {
       this.dialogRef.close(null);
     }

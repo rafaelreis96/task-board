@@ -27,13 +27,12 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
 
     this.columnService.findAll()
-    .then((columns) => {
-      if(columns) {
-        this.columns = columns;
+    .subscribe({
+      next: (columns) => {
+        if(columns)
+          this.columns = columns;
       }
-    }).catch( e => {
-      alert("Erro: " + e.statusText)
-    });
+    })
 
   }
 
@@ -62,10 +61,7 @@ export class BoardComponent implements OnInit {
     }
 
     const dialogRef = this.dialog.open(NovoNoteDialogComponent, {
-      panelClass: "dialog-lg",
-      data: {
-        columns: this.columns
-      }
+      panelClass: "dialog-lg"
     });
     dialogRef.afterClosed().subscribe( (note: Note) => {
       if(note) {
