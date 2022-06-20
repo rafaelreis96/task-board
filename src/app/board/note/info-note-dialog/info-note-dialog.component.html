@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{ note.titulo }}</h1>
+<mat-dialog-content class="mat-typography">
+  <p>
+    {{ note.descricao }}
+  </p>
+
+  <p>
+    <b>Periodo: </b>{{ (note.periodo?.inicio | date:'dd/MM/yyyy HH:mm') + ' - '+(note.periodo?.termino | date:'dd/MM/yyyy HH:mm')  }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button type="button" mat-button color="primary" title="Editar" (click)="editarDialog()">
+      <mat-icon>edit</mat-icon>Editar
+    </button>
+    <button type="button" mat-button color="accent" title="Excluir">
+      <mat-icon>close</mat-icon>Excluir
+    </button>
+</mat-dialog-actions>
