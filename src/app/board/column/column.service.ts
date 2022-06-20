@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { environment } from '@env/environment';
 import { Column } from './column.model';
@@ -10,12 +11,12 @@ export class ColumnService {
 
   constructor(private http: HttpClient) { }
 
-  create(column: Column) : Promise<Column | undefined> {
-    return this.http.post<Column>(this.URL, column).toPromise();
+  create(column: Column) : Observable<Column> {
+    return this.http.post<Column>(this.URL, column);
   }
 
-  findAll() : Promise<Column[] | undefined> {
-    return this.http.get<Column[]>(`${this.URL}/?_embed=notas`).toPromise();
+  findAll() : Observable<Column[]> {
+    return this.http.get<Column[]>(`${this.URL}/?_embed=notas`);
   }
 
 }
