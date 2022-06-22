@@ -1,0 +1,28 @@
+.container-board{
+  width: 100%;
+  height: calc(100% - 25px);
+  padding: 1em;
+  background-color: #eee;
+}
+
+.board {
+
+  &-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-column {
+    border-right: solid 2px #555;
+    &:last-child {
+      border: none;
+    }
+  }
+
+  &-footer {
+    position: fixed;
+    right: 1em;
+    bottom: 3em;
+  }
+}

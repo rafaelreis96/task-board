@@ -1,0 +1,13 @@
+<div class="note" (click)="exibirDialog(note)">
+  <div class="note-header">
+    <h1 class="note-title" [title]="note.titulo">{{ note.titulo }}</h1>
+  </div>
+  <div class="note-content">
+    {{ note.descricao }}
+  </div>
+  <div class="note-footer">
+    <span class="text-right text-small" title="Periodo">
+      {{ (note.periodo?.inicio | date:'dd/MM/yyyy') + ' - '+(note.periodo?.termino | date:'dd/MM/yyyy')  }}
+    </span>
+  </div>
+</div>

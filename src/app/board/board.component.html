@@ -1,0 +1,21 @@
+<div class="container-board">
+  <div class="board-content">
+    <div class="board-column" *ngFor="let c of columns">
+      <app-column [column]="c"></app-column>
+    </div>
+  </div>
+
+  <div class="board-footer d-flex justify-content-end">
+    <app-button-novo [matMenuTriggerFor]="menu">Novo</app-button-novo>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="novoNoteDialog()">
+        <mat-icon>note</mat-icon>
+        <span>Nota adesiva</span>
+      </button>
+      <button mat-menu-item (click)="novoColumnDialog()">
+        <mat-icon>view_column</mat-icon>
+        <span>Coluna de notas</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>

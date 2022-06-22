@@ -1,0 +1,18 @@
+
+/*  Dialog Sizes */
+.dialog {
+  &-sm {
+    width: 300px !important;
+  }
+  &-lg {
+    width: 798px !important;
+  }
+  &-xl {
+    width: 1138px !important;
+  }
+}
+
+/* Override MatFormField */
+.mat-form-field {
+  width: 100% !important;
+}

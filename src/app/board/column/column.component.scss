@@ -1,0 +1,28 @@
+.column{
+  width: 282px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+
+  &-header {
+    text-align: center;
+    border-bottom: solid 2px #555;
+    background-color: #EEE;
+    padding: 8px;
+    position: fixed;
+    display: block;
+    width: inherit;
+    height: 50px;
+    z-index: 1;
+  }
+
+  &-notes {
+    margin: 0;
+    padding: 0 16px;
+    list-style: none;
+    padding-top: 50px;
+
+  }
+
+}

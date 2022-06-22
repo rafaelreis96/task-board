@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{ titulo }}</h1>
+<form [formGroup]="formGroup" (submit)="salvar()">
+  <mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Titulo da Coluna</mat-label>
+        <input matInput type="text" formControlName="titulo" />
+      </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <app-button-salvar [disabled]="formGroup.invalid">Criar</app-button-salvar>
+    <app-button-descartar mat-dialog-close>Descartar</app-button-descartar>
+  </mat-dialog-actions>
+</form>
