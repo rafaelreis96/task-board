@@ -9,10 +9,10 @@
   </p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button type="button" mat-button color="primary" title="Editar" (click)="editarDialog()">
-      <mat-icon>edit</mat-icon>Editar
+    <button type="button" mat-button color="primary" (focus)="false" title="Editar" (click)="editarDialog()">
+      Editar
     </button>
-    <button type="button" mat-button color="accent" title="Excluir">
-      <mat-icon>close</mat-icon>Excluir
+    <button type="button" mat-button color="accent" title="Excluir" (click)="remover()">
+      Excluir
     </button>
 </mat-dialog-actions>

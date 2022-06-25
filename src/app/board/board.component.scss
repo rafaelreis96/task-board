@@ -2,7 +2,7 @@
   width: 100%;
   height: calc(100% - 25px);
   padding: 1em;
-  background-color: #eee;
+
 }
 
 .board {
@@ -17,6 +17,13 @@
     border-right: solid 2px #555;
     &:last-child {
       border: none;
+    }
+
+    &-notes {
+      margin: 0;
+      padding: 0 8px;
+      list-style: none;
+      box-sizing: border-box;
     }
   }
 

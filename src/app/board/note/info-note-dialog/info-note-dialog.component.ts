@@ -1,7 +1,8 @@
-import { NoteService } from './../note.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { Note } from './../note.model';
+import { NoteService } from './../note.service';
 import { NovoNoteDialogComponent } from './../novo-note-dialog/novo-note-dialog.component';
 
 @Component({
@@ -23,19 +24,20 @@ export class InfoNoteDialogComponent implements OnInit {
   }
 
   editarDialog() {
-    this.dialogRef.close()
     const dialogRef = this.dialog.open(NovoNoteDialogComponent, {
       panelClass: "dialog-lg",
-      data: this.note
+      data: {
+        note: this.note
+      }
     });
     dialogRef.afterClosed().subscribe( (note: Note) => {
-
+      this.dialogRef.close(note);
     })
   }
 
-  excluir() {
+  remover() {
     this.noteService.delete(this.note.id).subscribe({
-      next: () => console.log("Removed")
+      next: () => this.dialogRef.close(-1)
     });
   }
 

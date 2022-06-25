@@ -1,5 +1,5 @@
 .column{
-  width: 282px;
+  width: 270px;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -10,19 +10,10 @@
     border-bottom: solid 2px #555;
     background-color: #EEE;
     padding: 8px;
-    position: fixed;
     display: block;
     width: inherit;
     height: 50px;
     z-index: 1;
-  }
-
-  &-notes {
-    margin: 0;
-    padding: 0 16px;
-    list-style: none;
-    padding-top: 50px;
-
   }
 
 }
