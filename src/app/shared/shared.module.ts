@@ -16,14 +16,14 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 
 import { ButtonNovoComponent } from './components/button-novo/button-novo.component';
-import { ButtonNovoStrokedComponent } from './components/button-novo-stroked/button-novo-stroked.component';
+import { ButtonAdicionarComponent } from './components/button-adicionar/button-adicionar.component';
 import { ButtonSalvarComponent } from './components/button-salvar/button-salvar.component';
 import { ButtonDescartarComponent } from './components/button-descartar/button-descartar.component';
 import { MatNativeDateModule } from '@angular/material/core';
 
 const MY_COMPONENTES = [
   ButtonNovoComponent,
-  ButtonNovoStrokedComponent,
+  ButtonAdicionarComponent,
   ButtonSalvarComponent,
   ButtonDescartarComponent
 ];
@@ -46,7 +46,7 @@ const ANGULAR_MATERIAL = [
 @NgModule({
   declarations: [
     MY_COMPONENTES,
-    ButtonNovoStrokedComponent,
+    ButtonAdicionarComponent,
     ButtonSalvarComponent,
     ButtonDescartarComponent
   ],

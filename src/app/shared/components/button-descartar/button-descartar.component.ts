@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-button-descartar',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./button-descartar.component.scss']
 })
 export class ButtonDescartarComponent implements OnInit {
+  @Input() titulo = "Descartar";
 
   constructor() { }
 

@@ -6,6 +6,10 @@ import { Column } from './../../column/column.model';
 import { NoteService } from './../note.service';
 import { ColumnService } from '@app/board/column/column.service';
 
+export interface DATA_DIALOG {
+  column?: Column,
+  note?: Note
+}
 @Component({
   selector: 'app-novo-note-dialog',
   templateUrl: './novo-note-dialog.component.html',
@@ -24,7 +28,7 @@ export class NovoNoteDialogComponent implements OnInit {
     private columnService: ColumnService,
     private noteService: NoteService,
     private dialogRef: MatDialogRef<NovoNoteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private note: Note ) { }
+    @Inject(MAT_DIALOG_DATA) private data: DATA_DIALOG ) { }
 
   ngOnInit(): void {
     this.columnService.findAll().subscribe({
@@ -46,9 +50,14 @@ export class NovoNoteDialogComponent implements OnInit {
     this.horaInicio.statusChanges.subscribe( () => this.setHorasPeriodo(this.horaInicio, 'inicio'));
     this.horaTermino.statusChanges.subscribe( () => this.setHorasPeriodo(this.horaTermino, 'termino'));
 
-    if(this.note) {
+    if(this.data['note']) {
       this.titulo = "Editar Nota";
-      this.setValuesForm(this.note);
+      this.setValuesForm(this.data.note);
+    }
+
+    if(this.data['column']) {
+      this.formGroup.get('colunaId')?.setValue(this.data.column.id);
+      this.formGroup.get('colunaId')?.disable();
     }
 
   }
@@ -91,8 +100,7 @@ export class NovoNoteDialogComponent implements OnInit {
       this.formGroup.disable();
 
       if(this.hasEdit()) {
-        console.log(this.note)
-        this.noteService.update(this.note.id, this.formGroup.value)
+        this.noteService.update(this.data.note?.id || 0, this.formGroup.value)
         .subscribe({
           next: (note: Note) => this.dialogRef.close(note),
           complete: () => this.formGroup.enable()
@@ -110,7 +118,7 @@ export class NovoNoteDialogComponent implements OnInit {
   }
 
   hasEdit() {
-    return this.note != null && this.note != undefined;
+    return this.data != null && this.data['note'];
   }
 
 }

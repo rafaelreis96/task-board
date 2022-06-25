@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./button-salvar.component.scss']
 })
 export class ButtonSalvarComponent implements OnInit {
-  @Input()
-  disabled = false;
+  @Input() titulo = "Salvar";
+  @Input() disabled = false;
 
   constructor() { }
 

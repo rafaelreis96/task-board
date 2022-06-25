@@ -1,6 +1,7 @@
 import { Column } from './column.model';
 import { Note } from './../note/note.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-column',
@@ -8,8 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./column.component.scss']
 })
 export class ColumnComponent implements OnInit {
-  @Input()
-  column!: Column;
+  @Input() column!: Column;
 
   constructor() { }
 

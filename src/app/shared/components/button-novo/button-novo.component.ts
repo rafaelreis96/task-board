@@ -6,8 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./button-novo.component.scss']
 })
 export class ButtonNovoComponent implements OnInit {
-  @Input()
-  disabled = false;
+  @Input() titulo = "Novo";
+  @Input() disabled = false;
 
   constructor() { }
 

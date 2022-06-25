@@ -1,3 +1,4 @@
+import { InfoNoteDialogComponent } from './note/info-note-dialog/info-note-dialog.component';
 import { NoteService } from './note/note.service';
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
@@ -52,8 +53,7 @@ export class BoardComponent implements OnInit {
     })
   }
 
-  novoNoteDialog() {
-
+  novoNoteDialog(column?: Column) {
     if(!this.columns.length) {
       this.primeiraNotaSemColuna = true;
       this.novoColumnDialog();
@@ -61,7 +61,10 @@ export class BoardComponent implements OnInit {
     }
 
     const dialogRef = this.dialog.open(NovoNoteDialogComponent, {
-      panelClass: "dialog-lg"
+      panelClass: "dialog-lg",
+      data: {
+        column: column
+      }
     });
     dialogRef.afterClosed().subscribe( (note: Note) => {
       if(note) {
@@ -70,7 +73,29 @@ export class BoardComponent implements OnInit {
           this.columns[i].notas?.push(note);
         }
       }
-    })
+    });
+  }
+
+  exibirDialog(note: Note) {
+    const dialogRef = this.dialog.open(InfoNoteDialogComponent, {
+      panelClass: "dialog-lg",
+      data: note,
+    });
+    dialogRef.afterClosed().subscribe( (result: any) => {
+      const index = this.columns.findIndex(c => c.id === note.colunaId);
+      if(result == -1) {
+        this.columns[index]
+            .notas.splice(this.columns[index].notas.indexOf(note), 1);
+      } else if(result['id']) {
+        this.columns[index]
+            .notas[this.columns[index].notas.indexOf(note)] = result;
+      }
+    });
+
+  }
+
+  addNoteToColumn(column: Column) {
+    this.novoNoteDialog(column)
   }
 
 }

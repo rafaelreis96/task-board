@@ -1,12 +1,22 @@
 <div class="container-board">
   <div class="board-content">
     <div class="board-column" *ngFor="let c of columns">
-      <app-column [column]="c"></app-column>
+      <app-column [column]="c">
+        <ul *ngIf="c.notas?.length" class="board-column-notes">
+          <li class="item-note" *ngFor="let n of c.notas">
+            <app-note [note]="n"  (click)="exibirDialog(n)"></app-note>
+          </li>
+        </ul>
+
+        <p class="text-center mt-3">
+          <app-button-adicionar (click)="addNoteToColumn(c)"></app-button-adicionar>
+        </p>
+      </app-column>
     </div>
   </div>
 
   <div class="board-footer d-flex justify-content-end">
-    <app-button-novo [matMenuTriggerFor]="menu">Novo</app-button-novo>
+    <app-button-novo [matMenuTriggerFor]="menu"></app-button-novo>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="novoNoteDialog()">
         <mat-icon>note</mat-icon>

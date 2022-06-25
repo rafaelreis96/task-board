@@ -2,11 +2,5 @@
   <div class="column-header">
     <h1 class="column-title">{{ column.titulo }}</h1>
   </div>
-
-
-  <ul *ngIf="column.notas?.length" class="column-notes">
-    <li class="item-note" *ngFor="let n of column.notas">
-      <app-note [note]="n"></app-note>
-    </li>
-  </ul>
+  <ng-content></ng-content>
 </div>
