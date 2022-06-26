@@ -4,6 +4,9 @@ Quadro para controle de tarefas
 # Protótipo
 https://www.figma.com/file/mRHyURcAZG4kU95Kunh8nA/task-board
 
+# Demo
+https://ambitious-water-0457c6e10.1.azurestaticapps.net/board
+
 # Checklist
 - [x] Criar o repositório no GitHub com a estrutura do Gitflow, ou seja, branches main e develop.
 - [x] Usar componentes de algum framework CSS (Bootstrap, Materialize ou outro).
@@ -22,4 +25,4 @@ https://www.figma.com/file/mRHyURcAZG4kU95Kunh8nA/task-board
 - [x] Apresentar uma lista de dados com a diretiva estrutural ngFor.
 - [x] Usar a diretiva ngIf
 - [x] Formatar a apresentação de dados com Pipes.
-- [ ] Build e deploy da aplicação.
+- [x] Build e deploy da aplicação.
