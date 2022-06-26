@@ -34,7 +34,7 @@ $my-theme: mat.define-light-theme((
 @import "~bootstrap/scss/mixins";
 
 // Import Reboot
-@import "~bootstrap/scss/root";
+//@import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
 
 // Imnport Containers And Grid System
@@ -56,4 +56,23 @@ body {
 }
 body, h1, h2, h3, h4, h5, h6, p, span, button {
   font-family: 'Coming Soon', cursive !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: mat.get-color-from-palette($my-primary, 50);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: mat.get-color-from-palette($my-primary, 100);
+  border-radius: 10px;
+  transition: 500ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: mat.get-color-from-palette($my-primary, 200);
 }

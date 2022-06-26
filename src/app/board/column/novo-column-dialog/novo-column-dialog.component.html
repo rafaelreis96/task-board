@@ -7,7 +7,12 @@
       </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <app-button-salvar [disabled]="formGroup.invalid">Criar</app-button-salvar>
-    <app-button-descartar mat-dialog-close>Descartar</app-button-descartar>
+    <app-button-salvar [disabled]="formGroup.invalid" [titulo]="hasEdit() ? 'Atualizar' : 'Criar'"></app-button-salvar>
+    <ng-container *ngIf="hasEdit();else descartar">
+      <app-button-descartar titulo="Excluir" (click)="excluir()"></app-button-descartar>
+    </ng-container>
+    <ng-template #descartar>
+      <app-button-descartar mat-dialog-close></app-button-descartar>
+    </ng-template>
   </mat-dialog-actions>
 </form>

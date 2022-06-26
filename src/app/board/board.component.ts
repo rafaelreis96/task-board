@@ -81,14 +81,22 @@ export class BoardComponent implements OnInit {
       panelClass: "dialog-lg",
       data: note,
     });
-    dialogRef.afterClosed().subscribe( (result: any) => {
+    dialogRef.afterClosed().subscribe( (result: Note | any) => {
       const index = this.columns.findIndex(c => c.id === note.colunaId);
       if(result == -1) {
         this.columns[index]
             .notas.splice(this.columns[index].notas.indexOf(note), 1);
       } else if(result['id']) {
-        this.columns[index]
-            .notas[this.columns[index].notas.indexOf(note)] = result;
+        if(note.colunaId != result.colunaId) {
+          this.columns[index]
+              .notas.splice(this.columns[index].notas.indexOf(note), 1);
+
+          this.columns[this.columns.findIndex(c => c.id === result.colunaId)]
+              .notas.push(result);
+        } else {
+          this.columns[index]
+              .notas[this.columns[index].notas.indexOf(note)] = result;
+        }
       }
     });
 
@@ -96,6 +104,10 @@ export class BoardComponent implements OnInit {
 
   addNoteToColumn(column: Column) {
     this.novoNoteDialog(column)
+  }
+
+  removerColumn(column: Column) {
+    this.columns.splice(this.columns.indexOf(column), 1);
   }
 
 }

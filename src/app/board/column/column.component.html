@@ -1,6 +1,8 @@
 <div class="column">
   <div class="column-header">
-    <h1 class="column-title">{{ column.titulo }}</h1>
+    <a role="button" (click)="editarDialog()">
+      <h1 class="column-title" [title]="column.titulo">{{ column.titulo }}</h1>
+    </a>
   </div>
   <ng-content></ng-content>
 </div>

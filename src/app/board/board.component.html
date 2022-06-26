@@ -1,7 +1,7 @@
 <div class="container-board">
   <div class="board-content">
     <div class="board-column" *ngFor="let c of columns">
-      <app-column [column]="c">
+      <app-column [column]="c" (onDeleted)="removerColumn($event)">
         <ul *ngIf="c.notas?.length" class="board-column-notes">
           <li class="item-note" *ngFor="let n of c.notas">
             <app-note [note]="n"  (click)="exibirDialog(n)"></app-note>

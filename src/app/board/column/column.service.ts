@@ -19,4 +19,8 @@ export class ColumnService {
     return this.http.get<Column[]>(`${this.URL}/?_embed=notas`);
   }
 
+  delete(id: number) : Observable<any> {
+    return this.http.delete<any>(`${this.URL}/${id}`);
+  }
+
 }
